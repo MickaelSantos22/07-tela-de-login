@@ -6,59 +6,76 @@
 }
 
 body {
+    min-height: 100vh;
+    min-height: 100dvh;
     background-image: url(image.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 40px 20px;
 }
 
 .container {
     background-color: white;
     max-width: 900px;
+    padding: clamp(30px, 5vw, 64px);
     padding: 4rem;
     border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 form {
-    display: flex;
+    /* display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 20px; */
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 20px;
 }
 
 .input-box {
-    width: calc(50% - 10px);
+    /* width: calc(50% - 10px);
+    display: flex;
+    flex-direction: column; */
+    width: 100%;
+    min-width: 0;
     display: flex;
     flex-direction: column;
 }
 
 .input-box label {
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     border-radius: 10px;
+    font-weight: 500;
 }
 
 .input-box input {
-    padding: 12px;
+    /* padding: 12px;
     border:  1px solid #ccc;
     border-radius: 5px;
+    outline: none; */
+    width: 100%;
+    min-width: 0;
+    height: 48px;
+    padding: 0 13px;
+    border: 1px solid #ccc;
     outline: none;
+    font-size: 14px;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .input-box input:focus {
     border-color:  #9b59b6;
-}
-
-.input-box label {
-    margin-bottom: 6px;
-    font-weight: 500;
+    box-shadow: 0 0 0 3px rgba(155, 89, 182, 0.12);
 }
 
 h1 {
     position: relative;
     margin-bottom: 30px;
+    font-size: clamp(26px, 3vw, 34px);
 }
 
 h1::after {
@@ -87,15 +104,20 @@ button:hover {
 }
 
 h3 {
+    grid-column: 1 / -1;
     width: 100%;
     margin-top: 20px;
+    font-size: 18px;
 }
 
 .genders {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     margin-top: 15px;
+    gap: 15px;
+    margin-top: 5px;
 }
 
 .male-gender,
@@ -103,11 +125,21 @@ h3 {
 .not_say-gender {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 7px;
+}
+
+.genders input {
+    accent-color: #9b59b6;
+    cursor: pointer;
+}
+
+.genders label {
+    font-size: 15px;
+    cursor: pointer;
 }
 
 button {
-    width: 100%;
+    /* width: 100%;
     margin-top: 20px;
     padding: 15px;
     border: none;
@@ -118,9 +150,123 @@ button {
     background: linear-gradient(
         to right,
         #6bb8e8,
-        #b05ad3);
-}
+        #b05ad3); */
+    grid-column: 1 / -1;
+    width: 100%;
+    min-height: 52px;
+    margin-top: 20px;
+    padding: 15px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.3s, transform 0.3s;
+    background: linear-gradient(
+        to right,
+        #6bb8e8,
+        #b05ad3
+    );
+}    
 
 button:hover {
     opacity: .9;
+    transform: translateY(-2px);
+}
+
+/* Tablet */
+
+@media (max-width: 768px) {
+    body {
+        padding: 30px 20px;
+    }
+
+    .container {
+        padding: 35px;
+    }
+
+    form {
+        gap: 18px 20px;
+    }
+
+    .genders {
+        justify-content: flex-start;
+        gap: 20px;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    body {
+        align-items: flex-start;
+        padding: 25px 15px;
+    }
+
+    .container {
+        width: 100%;
+        padding: 30px 22px;
+        border-radius: 8px;
+    }
+
+    h1 {
+        font-size: 27px;
+        margin-bottom: 28px;
+    }
+
+    /* Uma coluna: cada campo ocupa
+       toda a largura disponível. */
+
+    form {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    h3,
+    .genders,
+    button {
+        grid-column: 1;
+    }
+
+    h3 {
+        margin-top: 10px;
+    }
+
+    .genders {
+        justify-content: flex-start;
+        gap: 15px 22px;
+    }
+
+    .input-box input {
+        height: 50px;
+        font-size: 15px;
+    }
+
+    button {
+        margin-top: 10px;
+    }
+
+}
+
+@media (max-width: 380px) {
+
+    body {
+        padding: 18px 10px;
+    }
+
+    .container {
+        padding: 25px 18px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .genders {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
 }
